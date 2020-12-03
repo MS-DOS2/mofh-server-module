@@ -1,5 +1,5 @@
-# mofh-server-module
-Unofficial MOFH server module for WHMCS
+# MyOwnFreeHost-server-module
+Unofficial MyOwnFreeHost server module for WHMCS
 
 # Installation
 1/Unzip the folder
