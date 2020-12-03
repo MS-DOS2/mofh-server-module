@@ -235,11 +235,11 @@ function Myownfreehost_CreateAccount(array $params) {
 function Myownfreehost_SuspendAccount(array $params) {
     try {
 	
-    $output = Myownfreehost_API($params, "/json-api/suspendacct?api.version=1&user=" . urlencode($params['username']) . "&reason=" . urlencode($params['suspendreason']));
+    $output = Myownfreehost_API($params, "/xml-api/suspendacct?api.version=1&user=" . urlencode($params['username']) . "&reason=" . urlencode($params['suspendreason']));
 	
-	if($output["result"]["0"]["status"] !== "1" ) 
+	if($output["result"]["status"] !== "1" ) 
 	{
-		$error = $output["result"]["0"]["statusmsg"];
+		$error = $output["result"]["statusmsg"];
 		throw new Exception(''.$error.'');
 	}
 	    } catch(Exception $err) {
@@ -251,11 +251,11 @@ function Myownfreehost_SuspendAccount(array $params) {
 function Myownfreehost_UnsuspendAccount(array $params) {
     try {
 
-        $output = Myownfreehost_API($params, "/json-api/unsuspendacct?api.version=1&user=" . urlencode($params['username']) . "&keepdns=0");
+        $output = Myownfreehost_API($params, "/xml-api/unsuspendacct?api.version=1&user=" . urlencode($params['username']) . "&keepdns=0");
 		
-	if($output["result"]["0"]["status"] !== "1" ) 
+	if($output["result"]["status"] !== "1" ) 
 	{
-		$error = $output["result"]["0"]["statusmsg"];
+		$error = $output["result"]["statusmsg"];
 		throw new Exception(''.$error.'');
 	}
 	    } catch(Exception $err) {
@@ -267,11 +267,11 @@ function Myownfreehost_UnsuspendAccount(array $params) {
 function Myownfreehost_TerminateAccount(array $params) {
     try {
 	
-	$output = Myownfreehost_API($params, "/json-api/removeacct", array( "user" => $params["username"] ));
+	$output = Myownfreehost_API($params, "/xml-api/removeacct", array( "user" => $params["username"] ));
 	
-	if($output["result"]["0"]["status"] !== "1" ) 
+	if($output["result"]["status"] !== "1" ) 
 	{
-		$error = $output["result"]["0"]["statusmsg"];
+		$error = $output["result"]["statusmsg"];
 		throw new Exception(''.$error.'');
 	}
 	
