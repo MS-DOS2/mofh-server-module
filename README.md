@@ -21,7 +21,3 @@ In Password: Your API password click on test the connection if all went well cli
 In the module parameters select the MyOwnFreeHost module and select the server group previously created. Leave the boxes empty and fill in according to what you want. Don't forget to put your reseller domain in Cpanel Login Domain !!! Save.
 
 6/End.
-
-
-# Updates
-0.8 : Initial release.
