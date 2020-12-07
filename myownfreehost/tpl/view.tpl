@@ -115,8 +115,12 @@
 		<form action="https://cpanel.{$cpanelurl}/login.php" method="post" name="login" >
 		<input name="uname" id="mod_login_username" type="hidden" class="inputbox" alt="username" size="10" value="{$username}" /></label>
 		<input type="hidden" id="mod_login_password" name="passwd" class="inputbox" size="10" alt="password" value="{$password}"/></label>
-		<input type="hidden" name="language" value="French" />
+		<input type="hidden" name="language" value="{$lang}" />
+		{if $lang == 'French'}
+		<input type="Submit" name="Submit" value="Connexion au Cpanel" class="btn btn-primary modulebutton" />
+		{else}
 		<input type="Submit" name="Submit" value="Login to Cpanel" class="btn btn-primary modulebutton" />
+		{/if}
 		</form>
 		</div>
 		</div>
@@ -203,9 +207,6 @@
         </div>
     </div>
 </div>
-<div class="col-xs-4">
-<a href="clientarea.php?action=cancel&amp;id={$id}" class="btn btn-block btn-danger {if $pendingcancellation}disabled{/if}">{if $pendingcancellation}{$LANG.cancellationrequested}{else}{$LANG.clientareacancelrequestbutton}{/if}</a>
-</div>
 {if $configurableoptions}
     <div class="panel panel-default" id="cPanelConfigurableOptionsPanel">
         <div class="panel-heading">
@@ -258,3 +259,6 @@
         </div>
     </div>
 {/if}
+<div class="col-xs-4">
+<a href="clientarea.php?action=cancel&amp;id={$id}" class="btn btn-block btn-danger {if $pendingcancellation}disabled{/if}">{if $pendingcancellation}{$LANG.cancellationrequested}{else}{$LANG.clientareacancelrequestbutton}{/if}</a>
+</div>

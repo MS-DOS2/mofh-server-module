@@ -129,6 +129,12 @@ function Myownfreehost_ConfigOptions() {
             "Type" => "text",
             "Size" => 10,
         ],
+		"Lang" => [
+            "FriendlyName" => "Cpanel Language",
+			"Description" => "Use to set the language that cpanel should display if the value is empty the English language will be used",
+            "Type" => "text",
+            "Size" => 10,
+        ],
     ];
 }
 
@@ -237,6 +243,8 @@ function Myownfreehost_SuspendAccount(array $params) {
 	
     $output = Myownfreehost_API($params, "/xml-api/suspendacct?api.version=1&user=" . urlencode($params['username']) . "&reason=" . urlencode($params['suspendreason']));
 	
+	if($output == "") throw new Exception('The reason for cancellation is incorrect only these reasons are valid: PHISHING, VIRUS_MALWARE_HOSTING, NULLED_SCRIPT, CONTENT_VIOLATION, ABUSE_COMPLAINT, SPAM_DOMAIN_SIGNUP, REQUESTED and OTHER.');
+	
 	if($output["result"]["status"] !== "1" ) 
 	{
 		$error = $output["result"]["statusmsg"];
@@ -253,6 +261,7 @@ function Myownfreehost_UnsuspendAccount(array $params) {
 
         $output = Myownfreehost_API($params, "/xml-api/unsuspendacct?api.version=1&user=" . urlencode($params['username']) . "&keepdns=0");
 		
+		
 	if($output["result"]["status"] !== "1" ) 
 	{
 		$error = $output["result"]["statusmsg"];
@@ -267,7 +276,7 @@ function Myownfreehost_UnsuspendAccount(array $params) {
 function Myownfreehost_TerminateAccount(array $params) {
     try {
 	
-	$output = Myownfreehost_API($params, "/xml-api/removeacct", array( "user" => $params["username"] ));
+	$output = Myownfreehost_API($params, "/xml-api/removeacct?user=" . $params["username"]);
 	
 	if($output["result"]["status"] !== "1" ) 
 	{
@@ -285,7 +294,6 @@ function Myownfreehost_TerminateAccount(array $params) {
 function Myownfreehost_ChangePassword(array $params) {
     try {
     
-
     $output = Myownfreehost_API($params, "/json-api/passwd?user=" . $params["username"] . "&pass=" . urlencode($params["password"]));
 
 
@@ -304,8 +312,15 @@ function Myownfreehost_ChangePassword(array $params) {
 
 function Myownfreehost_ChangePackage(array $params) {
     try {
-		
-		throw new Exception('Comming soon');
+     
+	 $package = Myownfreehost_GetOption($params, 'WHM_Package_Name');
+	 $output = Myownfreehost_API($params, "/xml-api/changepackage?user=" . $params["username"] . "&pkg=" . urlencode($package));
+	 
+	if($output["result"]["status"] !== "1" ) 
+	{
+		$error = $output["result"]["statusmsg"];
+		throw new Exception(''.$error.'');
+	}
 		
     } catch(Exception $err) {
         return $err->getMessage();
@@ -327,5 +342,6 @@ function Myownfreehost_AdminSingleSignOn($params)
 function Myownfreehost_ClientArea($params)
 {
 	$cpanel = Myownfreehost_GetOption($params, 'Cpanel');
-    return array( "overrideDisplayTitle" => ucfirst($params["domain"]), "tabOverviewReplacementTemplate" => "tpl/view.tpl", 'vars' => [ 'cpanelurl' => $cpanel,]);
+	$country = Myownfreehost_GetOption($params, 'Lang');
+    return array( "overrideDisplayTitle" => ucfirst($params["domain"]), "tabOverviewReplacementTemplate" => "tpl/view.tpl", 'vars' => [ 'cpanelurl' => $cpanel, 'lang' => $country,]);
 }
