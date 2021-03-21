@@ -107,23 +107,83 @@
 
 {if $systemStatus == 'Active'}
 
-    <div class="panel panel-default" id="cPanelQuickShortcutsPanel">
-        <div class="panel-heading">
-            <h3 class="panel-title">{$LANG.cPanel.quickShortcuts}</h3>
+    <div class="panel card panel-default mb-3" id="cPanelQuickShortcutsPanel">
+        <div class="panel-heading card-header">
+            <h3 class="panel-title card-title m-0">{$LANG.cPanel.quickShortcuts}</h3>
         </div>
-        <div class="panel-body text-center">
-		<form action="https://cpanel.{$cpanelurl}/login.php" method="post" name="login" >
-		<input name="uname" id="mod_login_username" type="hidden" class="inputbox" alt="username" size="10" value="{$username}" /></label>
-		<input type="hidden" id="mod_login_password" name="passwd" class="inputbox" size="10" alt="password" value="{$password}"/></label>
-		<input type="hidden" name="language" value="{$lang}" />
-		{if $lang == 'French'}
-		<input type="Submit" name="Submit" value="Connexion au Cpanel" class="btn btn-primary modulebutton" />
-		{else}
-		<input type="Submit" name="Submit" value="Login to Cpanel" class="btn btn-primary modulebutton" />
-		{/if}
-		</form>
-		</div>
-		</div>
+        <div class="panel-body card-body text-center">
+
+            <div class="row cpanel-feature-row">
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelEmailAccounts">
+                    
+                        <img src="modules/servers/cpanel/img/email_accounts.png" />
+                        {$LANG.cPanel.emailAccounts}
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelForwarders">
+                    <a href="https://cpanel.{$cpanelurl}/panel/indexpl.php?option=emailaccounts" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/forwarders.png" />
+                        {$LANG.cPanel.forwarders}
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelAutoResponders">
+                    <a href="https://cpanel.{$cpanelurl}/panel/indexpl.php?option=emailforwarder" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/autoresponders.png" />
+                        {$LANG.cPanel.autoresponders}
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelFileManager">
+                    <a href="https://filemanager.ai/new/" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/file_manager.png" />
+                        {$LANG.cPanel.fileManager}
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelBackup">
+                    <a href="clientarea.php?action=productdetails&amp;id={$serviceid}&amp;dosinglesignon=1&amp;app=Backups_Home" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/backup.png" />
+                        {$LANG.cPanel.backup}
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelSubdomains">
+                    <a href="https://cpanel.{$cpanelurl}/panel/indexpl.php?option=subdomains" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/subdomains.png" />
+                        {$LANG.cPanel.subdomains}
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelAddonDomains">
+                    <a href="https://cpanel.{$cpanelurl}/panel/indexpl.php?option=domains" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/addon_domains.png" />
+                        {$LANG.cPanel.addonDomains}
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelCronJobs">
+                    <a href="https://cpanel.{$cpanelurl}/panel/indexpl.php?option=cron" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/cron_jobs.png" />
+                        {$LANG.cPanel.cronJobs}
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelMySQLDatabases">
+                    <a href="https://cpanel.{$cpanelurl}/panel/indexpl.php?option=mysql" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/mysql_databases.png" />
+                        {$LANG.cPanel.mysqlDatabases}
+                    </a>
+                </div>
+                <div class="col-md-3 col-sm-4 col-xs-6 col-6" id="cPanelPhpMyAdmin">
+                    <a href="https://cpanel.{$cpanelurl}/panel/indexpl.php?option=pma" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/php_my_admin.png" />
+                        {$LANG.cPanel.phpMyAdmin}
+                    </a>
+                </div>
+                <div class="col-sm-3 col-xs-6" id="cPanelAwstats">
+                    <a href="https://cpanel.{$cpanelurl}/panel/indexpl.php?option=stats2" target="_blank" class="d-block mb-3">
+                        <img src="modules/servers/cpanel/img/awstats.png" />
+                        {$LANG.cPanel.awstats}
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 {else}
 
@@ -166,6 +226,7 @@
                         </div>
                         <div class="col-xs-6">
                             {$recurringamount}
+
                         </div>
                     </div>
                 {/if}
@@ -259,6 +320,3 @@
         </div>
     </div>
 {/if}
-<div class="col-xs-4">
-<a href="clientarea.php?action=cancel&amp;id={$id}" class="btn btn-block btn-danger {if $pendingcancellation}disabled{/if}">{if $pendingcancellation}{$LANG.cancellationrequested}{else}{$LANG.clientareacancelrequestbutton}{/if}</a>
-</div>

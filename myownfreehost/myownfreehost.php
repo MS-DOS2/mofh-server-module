@@ -328,15 +328,19 @@ function Myownfreehost_ChangePackage(array $params) {
 
     return 'success';
 }
-
 function Myownfreehost_SingleSignOn($params)
 {
-	return array( "success" => true, "redirectTo" => 'https://panel.myownfreehost.net' );
+	$cpanel = Myownfreehost_GetOption($params, 'Cpanel');
+	$link = "https://" . $cpanel;
+	return array( "success" => true, "redirectTo" => $link);
 }
-
+function Myownfreehost_ServiceSingleSignOn($params)
+{
+    return Myownfreehost_SingleSignOn($params);
+}
 function Myownfreehost_AdminSingleSignOn($params)
 {
-    return Myownfreehost_singlesignon($params);
+    return array( "success" => true, "redirectTo" => 'https://panel.myownfreehost.net' );
 }
 
 function Myownfreehost_ClientArea($params)
