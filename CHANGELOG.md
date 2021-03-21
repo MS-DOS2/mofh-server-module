@@ -1,6 +1,13 @@
 # Changelog
 
-## [0.9] - 2014-08-09
+## [1.0] - 05-01-2021
+
+### Added
+
+- Move the cancel button and add buttons in the sidebar.
+- Add the cpanel template on the service form.
+
+## [0.9] - 05-01-2021
 
 ### Added
 
@@ -12,6 +19,6 @@
 - Fixed a bug on the service suspension and termination process.
 
 
-## [0.8] - 2020-03-2020
+## [0.8] - 02-01-2021
 
 - Initial Release.
