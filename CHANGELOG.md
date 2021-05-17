@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1] - 17-05-2021
+
+### Fixed
+
+- Fixed bugs.
+
 ## [1.0] - 05-01-2021
 
 ### Added
