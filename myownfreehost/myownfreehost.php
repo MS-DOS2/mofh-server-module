@@ -4,27 +4,10 @@ if(!defined("WHMCS")) {
     die("This file cannot be accessed directly");
 }
 
-function Myownfreehost_GetHostname(array $params) {
-	$port = $params["serverport"];
-    $hostname = $params['serverhostname'];
-    if ($hostname === '') throw new Exception('Could not find the panel\'s hostname');
-
-
-    foreach([
-        'DOT' => '.',
-        'DASH' => '-',
-    ] as $from => $to) {
-        $hostname = str_replace($from, $to, $hostname);
-    }
-
-    if(ip2long($hostname) !== false) $hostname = 'http://' . $hostname;
-    else $hostname = ($params['serversecure'] ? 'https://' : 'http://') . $hostname . ':' .$port;
-
-    return rtrim($hostname, '/');
-}
-
 function Myownfreehost_API(array $params, $endpoint, array $data = [], $dontLog = false) {
-    $url = Myownfreehost_GetHostname($params) . '' . $endpoint;
+    if($params['serverport'] == 2086) $prefix = 'http://';
+    if($params['serverport'] == 2087) $prefix = 'https://';
+    $url = $prefix . $params['serverhostname'] . ':' . $params['serverport'] . '' . $endpoint;
 
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, $url);
@@ -331,7 +314,7 @@ function Myownfreehost_ChangePackage(array $params) {
 function Myownfreehost_SingleSignOn($params)
 {
 	$cpanel = Myownfreehost_GetOption($params, 'Cpanel');
-	$link = "https://" . $cpanel;
+	$link = "https://cpanel." . $cpanel;
 	return array( "success" => true, "redirectTo" => $link);
 }
 function Myownfreehost_ServiceSingleSignOn($params)

@@ -23,11 +23,9 @@ function Myownfreehost_defineSsoSidebarLinks($sidebar) {
 	<input type="hidden" id="mod_login_password" name="passwd" class="inputbox" size="10" alt="password" value="'.$password.'"/>
 	<input type="hidden" name="language" value="'.$lang.'" />
 	<input type="hidden" type="Submit" name="Submit" value="Login to Cpanel" class="btn btn-primary modulebutton" />
-	<a style="color: #69677e" href="#" onclick="parentNode.submit();">'.Lang::trans('cpanellogin').'</a> 
+	<a style="color: #495057" href="#" onclick="parentNode.submit();">'.Lang::trans('cpanellogin').'</a> 
 	</form>', "disabled" => $service->status != "Active", 'order' => 1));
     $sidebar->getChild("Service Details Actions")->addChild("Login to Webmail", array("uri" => "http://185.27.134.244/roundcubemail/", "label" => Lang::trans("cpanelwebmaillogin"), "attributes" => array("target" => "_blank"), "disabled" => $service->status != "Active", "order" => 2));
-	$sidebar->getChild('Service Details Actions')->removeChild('Change Password');
-	$sidebar->getChild("Service Details Actions")->addChild("Change Password", array("uri" => "#tabChangepw", "label" => Lang::trans("clientareanavchangepw"), "attributes" => ["target" => "_blank"], "disabled" => $service->status != "Active", "order" => 3));
 	$sidebar->getChild("Service Details Actions")->addChild("Request Cancellation", array("uri" => "clientarea.php?action=cancel&id=" . $service->id, "label" => Lang::trans("cancellationrequested"), "attributes" => ["target" => "_blank"], "disabled" => $service->status != "Active", "order" => 4));
 }
 ?>
