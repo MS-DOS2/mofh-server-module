@@ -328,7 +328,5 @@ function Myownfreehost_AdminSingleSignOn($params)
 
 function Myownfreehost_ClientArea($params)
 {
-	$cpanel = Myownfreehost_GetOption($params, 'Cpanel');
-	$country = Myownfreehost_GetOption($params, 'Lang');
-    return array( "overrideDisplayTitle" => ucfirst($params["domain"]), "tabOverviewReplacementTemplate" => "tpl/view.tpl", 'vars' => [ 'cpanelurl' => $cpanel, 'lang' => $country,]);
+    return array( "overrideDisplayTitle" => ucfirst($params["domain"]), "tabOverviewReplacementTemplate" => "../cpanel/templates/overview.tpl", 'vars' => [ 'cpanelurl' => $cpanel, 'lang' => $country,]);
 }
