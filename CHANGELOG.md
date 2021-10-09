@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2] - 09-10-2021
+
+### Added
+
+- cPanel Login Menu.
+
+### Removed
+
+- Removal of the services management page using the module folders and replacement by the cPanel page of the default WHMCS module.
+
 ## [1.1] - 17-05-2021
 
 ### Fixed
